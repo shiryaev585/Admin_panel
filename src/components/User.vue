@@ -1,9 +1,5 @@
 <template>
-    <li 
-        class="user" 
-        v-for="user in users"
-        :key="user.id"
-    >
+    <li class="user">
         <div class="user__info">
             <span class="user__status">{{ user.status }}</span>
             <span class="user__name">{{ user.name }}</span>
@@ -24,7 +20,8 @@
                 <span>{{ user.phone }}</span>
             </div>
         </div>
-        <custom-button class="user__delete">
+        <div class="user__id" style="display: none;">{{ user.id }}</div>
+        <custom-button class="user__delete" @click="$emit('remove', user)">
             <svg width="30px" height="30px" viewBox="0 0 30 30">
                 <g>
                     <path d="M 23.710938 4.980469 L 23.710938 7.5 L 6.25 7.5 L 6.25 4.980469 L 10.585938 4.980469 L 11.875 3.75 L 18.085938 3.75 L 19.375 4.980469 Z M 7.480469 23.730469 L 7.480469 8.730469 L 22.480469 8.730469 L 22.480469 23.730469 C 22.480469 25.078125 21.308594 26.25 19.960938 26.25 L 10 26.25 C 8.648438 26.25 7.476562 25.078125 7.476562 23.730469 Z M 7.480469 23.730469 " fill="#EE685F" />
@@ -34,35 +31,11 @@
     </li>
 </template>
 <script>
-import CustomButton from './CustomButton.vue';
 export default {
-    components: {
-        CustomButton,
-    },
-    data() {
-        return {
-            users: [
-                {
-                    id: 1,
-                    email: 'exmple@gmail.com',
-                    password: 'qwerty',
-                    phone: '8-999-888-77-66',
-                    name: 'John Dow',
-                    status: 'client',
-                    created: '01.01.2020',
-                    edited: '05.06.2022',
-                },
-                {
-                    id: 2,
-                    email: 'exmple_v2@gmail.com',
-                    password: 'qwerty123',
-                    phone: '8-888-777-66-55',
-                    name: 'Judy Doe',
-                    status: 'admin',
-                    created: '18.03.2021',
-                    edited: '01.06.2022',
-                },
-            ]
+    props: {
+        user: {
+            type: Object,
+            required: true,
         }
     },
 }

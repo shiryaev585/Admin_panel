@@ -6,7 +6,9 @@
     <users-list 
         :users="users" 
         @remove="removeUser"
+        v-if="!isUserLoading"
     />
+    <loader v-else />
 </template>
 <script>
 import CustomHeader from './components/CustomHeader.vue';
@@ -21,29 +23,9 @@ export default {
     },
     data() {
         return {
-            users: [
-                {
-                    id: 1,
-                    email: 'exmple@gmail.com',
-                    password: 'qwerty',
-                    phone: '8-999-888-77-66',
-                    name: 'John Dow',
-                    status: 'client',
-                    created: '01.01.2020',
-                    edited: '05.06.2022',
-                },
-                {
-                    id: 2,
-                    email: 'exmple_v2@gmail.com',
-                    password: 'qwerty123',
-                    phone: '8-888-777-66-55',
-                    name: 'Judy Doe',
-                    status: 'admin',
-                    created: '18.03.2021',
-                    edited: '01.06.2022',
-                },
-            ],
+            users: [],
             isModalVisible: false,
+            isUserLoading: false,
         }
     },
     methods: {
@@ -54,7 +36,21 @@ export default {
         removeUser(user) {
             const updatedUserList = this.users.filter((u) => user.id !== u.id);
             this.users = updatedUserList;
+            localStorage.setItem('Users__List', JSON.stringify(updatedUserList));
         },
+        fetchUsers() {
+            this.isUserLoading = true;
+            
+            // setTimeout for async imitation and to show loader
+            setTimeout(() => {
+                const usersList = JSON.parse(localStorage.getItem('Users__List')) || [];
+                this.users = usersList;
+                this.isUserLoading = false;
+            }, 800);
+        },
+    },
+    mounted() {
+        this.fetchUsers();
     },
 };
 </script>

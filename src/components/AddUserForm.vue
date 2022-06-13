@@ -63,15 +63,14 @@ export default {
     },
     methods: {
         addUser() {
+            const date = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`;
+            const usersList = JSON.parse(localStorage.getItem('Users__List')) || [];
             this.user.id = Date.now();
+            this.user.created = date;
+            this.user.edited = date;
             this.$emit('add', this.user);
-            this.user = {
-                name: '',
-                email: '',
-                phone: '',
-                status: '',
-                password: '',
-            };
+            usersList.push(this.user);
+            localStorage.setItem('Users__List', JSON.stringify(usersList));
         },
     },
 };

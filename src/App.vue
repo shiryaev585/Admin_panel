@@ -3,8 +3,12 @@
         <add-user-form @add="addUser" />
     </modal>
     <custom-header v-model:isVisible="isModalVisible" />
+    <custom-select 
+        v-model="selectedSort"
+        :options="sortOptions"
+    />
     <users-list 
-        :users="users" 
+        :users="sortedUsers" 
         @remove="removeUser"
         v-if="!isUserLoading"
     />
@@ -26,6 +30,13 @@ export default {
             users: [],
             isModalVisible: false,
             isUserLoading: false,
+            selectedSort: '',
+            sortOptions: [
+                { value: 'status', name: 'status', },
+                { value: 'email', name: 'email', },
+                { value: 'phone', name: 'phone', },
+                { value: 'name', name: 'name', },
+            ],
         }
     },
     methods: {
@@ -51,6 +62,14 @@ export default {
     },
     mounted() {
         this.fetchUsers();
+    },
+    computed: {
+        sortedUsers() {
+            return [...this.users].sort((curUser, nextUser) => curUser[this.selectedSort]?.localeCompare(nextUser[this.selectedSort]));
+        }
+    },
+    watch: {
+        
     },
 };
 </script>

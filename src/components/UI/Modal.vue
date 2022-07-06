@@ -35,30 +35,30 @@ export default {
 }
 </script>
 <style lang="scss">
-    .modal {
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.5);
-        position: fixed;
-        display: flex;
-        z-index: 10;
+.modal {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    z-index: 10;
 
-        &__content {
-            position: relative;
-            margin: auto;
-            background: white;
-            border-radius: 12px;
-            min-height: 50px;
-            min-width: 300px;
-            padding: 20px;
+    &__content {
+        position: relative;
+        margin: auto;
+        background: white;
+        border-radius: 12px;
+        min-height: 50px;
+        min-width: 300px;
+        padding: 20px;
 
-            &-close {
-                position: absolute;
-                top: 15px;
-                right: 15px;
-            }
+        &-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
         }
+    }
 }
 </style>

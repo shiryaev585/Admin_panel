@@ -41,50 +41,61 @@ export default {
 }
 </script>
 <style lang="scss">
-    .user {
-        position: relative;
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: #F4F7FB;
-        border-radius: 10px;
+.user {
+    position: relative;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #F4F7FB;
+    border-radius: 10px;
 
-        &__info {
-            margin-bottom: 8px;
-        }
+    &__info {
+        margin-bottom: 8px;
+    }
 
-        &__status {
-            font-weight: 700;
-            margin-right: 8px;
-        }
+    &__status {
+        font-weight: 700;
+        margin-right: 8px;
+    }
 
-        &__contacts {
-            display: flex;
-            align-items: center;
-        }
+    &__contacts {
+        display: flex;
+        align-items: center;
+    }
 
-        &__email {
-            display: flex;
-            align-items: center;
-            margin-right: 22px;
+    &__email {
+        display: flex;
+        align-items: center;
+        margin-right: 22px;
 
-            & span {
-                margin-left: 8px;
-            }
-        }
-
-        &__phone {
-            display: flex;
-            align-items: center;
-
-            & span {
-                margin-left: 8px;
-            }
-        }
-
-        &__delete {
-            position: absolute;
-            top: 30px;
-            right: 30px;
+        & span {
+            margin-left: 8px;
         }
     }
+
+    &__phone {
+        display: flex;
+        align-items: center;
+
+        & span {
+            margin-left: 8px;
+        }
+    }
+
+    &__delete {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+}
+
+@media (max-width: 540px) {
+    .user__contacts {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .user__phone {
+        margin-top: 8px;
+    }
+}
 </style>

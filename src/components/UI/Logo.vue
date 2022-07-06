@@ -9,8 +9,8 @@ export default {
 }
 </script>
 <style lang="scss">
-    .logo {
-        font-size: 22px;
-        color: #fff;
-    }
+.logo {
+    font-size: 22px;
+    color: #fff;
+}
 </style>

@@ -9,7 +9,7 @@ export default {
 }
 </script>
 <style lang="scss">
-    .btn {
-        cursor: pointer;
-    }
+.btn {
+    cursor: pointer;
+}
 </style>

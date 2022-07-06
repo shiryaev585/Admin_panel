@@ -27,11 +27,17 @@ export default {
 }
 </script>
 <style lang="scss">
+.header {
+    padding: 20px 70px;
+    background: radial-gradient(71.16% 199.4% at 82.43% 76.38%, #8185FF 0%, #6F73EE 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 540px) {
     .header {
-        padding: 20px 70px;
-        background: radial-gradient(71.16% 199.4% at 82.43% 76.38%, #8185FF 0%, #6F73EE 100%);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        padding: 20px;
     }
+}
 </style>

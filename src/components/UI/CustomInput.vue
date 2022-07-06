@@ -19,10 +19,5 @@ export default {
 }
 </script>
 <style lang="scss">
-.input {
-    width: 100%;
-    border: 1px solid #6F73EE;
-    padding: 10px 15px;
-    margin-top: 15px;
-}
+
 </style>

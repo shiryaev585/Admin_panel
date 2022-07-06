@@ -3,12 +3,22 @@
         <add-user-form @add="addUser" />
     </modal>
     <custom-header v-model:isVisible="isModalVisible" />
-    <custom-select 
-        v-model="selectedSort"
-        :options="sortOptions"
-    />
+    <div class="filters">
+        <custom-input 
+            class="filters__search"
+            v-model="searchQuery"
+            placeholder="Search..."
+        />
+        <custom-select 
+            v-model="selectedSort"
+            :options="sortOptions"
+            class="filters__sort"
+        >
+            Sort
+        </custom-select>
+    </div>
     <users-list 
-        :users="sortedUsers" 
+        :users="filteredUsers" 
         @remove="removeUser"
         v-if="!isUserLoading"
     />
@@ -30,12 +40,14 @@ export default {
             users: [],
             isModalVisible: false,
             isUserLoading: false,
+            searchQuery: '',
             selectedSort: '',
             sortOptions: [
                 { value: 'status', name: 'status', },
                 { value: 'email', name: 'email', },
                 { value: 'phone', name: 'phone', },
                 { value: 'name', name: 'name', },
+                { value: 'created', name: 'created date', },
             ],
         }
     },
@@ -66,12 +78,16 @@ export default {
     computed: {
         sortedUsers() {
             return [...this.users].sort((curUser, nextUser) => curUser[this.selectedSort]?.localeCompare(nextUser[this.selectedSort]));
+        },
+        filteredUsers() {
+            return this.sortedUsers.filter((user) => {
+                return user.email.includes(this.searchQuery) 
+                    || user.status.includes(this.searchQuery);
+            });
         }
     },
-    watch: {
-        
-    },
 };
+console.log(JSON.parse(localStorage.getItem('Users__List')));
 </script>
 <style lang="scss">
 body,
@@ -95,7 +111,8 @@ ul {
 a, 
 button,
 input,
-textarea {
+textarea,
+select {
     outline: none;
     display: block;
 }
@@ -121,4 +138,41 @@ button {
 #app {
     font-family: Arial, Helvetica, sans-serif
 }
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 70px 0;
+
+    &__search {
+        border: 1px solid #6F73EE;
+        padding: 10px 15px;
+        width: 80%;
+        margin-right: 16px;
+    }
+    &__sort {
+        border: 1px solid #6F73EE;
+        padding: 10px 0;
+        width: 20%;
+    }
+}
+
+@media (max-width: 768px) {
+    .filters {
+
+        &__search {
+            width: 70%;
+        }
+        &__sort {
+            width: 30%;
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    .filters {
+        margin: 20px;
+    }
+}
+
 </style>

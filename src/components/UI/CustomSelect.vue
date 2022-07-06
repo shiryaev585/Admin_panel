@@ -1,6 +1,8 @@
 <template>
     <select v-model="modelValue" @change="changeOption">
-        <option disabled value="">Filter</option>
+        <option disabled value="">
+            <slot></slot>
+        </option>
         <option 
             v-for="option in options" 
             :key="option.value"

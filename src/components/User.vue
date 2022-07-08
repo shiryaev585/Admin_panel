@@ -21,13 +21,28 @@
             </div>
         </div>
         <div class="user__id" style="display: none;">{{ user.id }}</div>
-        <custom-button class="user__delete" @click="$emit('remove', user)">
-            <svg width="30px" height="30px" viewBox="0 0 30 30">
-                <g>
-                    <path d="M 23.710938 4.980469 L 23.710938 7.5 L 6.25 7.5 L 6.25 4.980469 L 10.585938 4.980469 L 11.875 3.75 L 18.085938 3.75 L 19.375 4.980469 Z M 7.480469 23.730469 L 7.480469 8.730469 L 22.480469 8.730469 L 22.480469 23.730469 C 22.480469 25.078125 21.308594 26.25 19.960938 26.25 L 10 26.25 C 8.648438 26.25 7.476562 25.078125 7.476562 23.730469 Z M 7.480469 23.730469 " fill="#EE685F" />
-                </g>
-            </svg>
-        </custom-button>
+        <div class="user__btns-wrapper">
+            <custom-button 
+                class="user__edit"
+                @click="$router.push(`/users/${user.id}`)"
+            >
+                <svg width="30px" height="30px" viewBox="0 0 30 30">
+                    <g id="surface1">
+                        <path style=" stroke:none;fill-rule:evenodd;fill:#6F73EE;fill-opacity:1;" d="M 7.503906 18.648438 L 12.003906 23.207031 L 7.503906 23.207031 Z M 15.382812 9.699219 L 19.886719 14.199219 L 13.105469 22.128906 L 8.628906 17.578125 Z M 17.730469 7.199219 C 18.433594 6.496094 19.785156 6.707031 20.746094 7.667969 L 21.617188 8.542969 C 22.582031 9.503906 22.792969 10.855469 22.085938 11.558594 L 20.695312 12.949219 L 16.339844 8.589844 Z M 17.730469 7.199219 "/>
+                    </g>
+                </svg>
+            </custom-button>
+            <custom-button 
+                class="user__delete" 
+                @click="$emit('remove', user)"
+            >
+                <svg width="30px" height="30px" viewBox="0 0 30 30">
+                    <g>
+                        <path d="M 23.710938 4.980469 L 23.710938 7.5 L 6.25 7.5 L 6.25 4.980469 L 10.585938 4.980469 L 11.875 3.75 L 18.085938 3.75 L 19.375 4.980469 Z M 7.480469 23.730469 L 7.480469 8.730469 L 22.480469 8.730469 L 22.480469 23.730469 C 22.480469 25.078125 21.308594 26.25 19.960938 26.25 L 10 26.25 C 8.648438 26.25 7.476562 25.078125 7.476562 23.730469 Z M 7.480469 23.730469 " fill="#EE685F" />
+                    </g>
+                </svg>
+            </custom-button>
+        </div>
     </li>
 </template>
 <script>
@@ -81,10 +96,16 @@ export default {
         }
     }
 
-    &__delete {
+    &__btns-wrapper {
+        display: flex;
+        align-items: center;
         position: absolute;
         top: 30px;
         right: 30px;
+    }
+
+    &__edit {
+        margin-right: 16px;
     }
 }
 

@@ -3,6 +3,7 @@
         <h3>Add a new user</h3>
         <div class="form__inputs-wrapper">
             <custom-input 
+                v-focus
                 :value="user.name"
                 @input="user.name = $event.target.value"
                 v-model="user.name"
@@ -86,7 +87,9 @@ export default {
     },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+@import '../assets/variables.scss';
+
 .form {
     padding: 20px;
     width: 600px;
@@ -94,7 +97,7 @@ export default {
     &__input,
     &__select {
         width: 100%;
-        border: 1px solid #6F73EE;
+        border: 1px solid $main;
         margin-top: 15px;
     }
 
@@ -117,17 +120,17 @@ export default {
         text-transform: uppercase;
         width: 150px;
         color: #fff;
-        background-color: #F3A712;
+        background-color: $btnColor;
         padding: 15px 25px;
-            border-radius: 5px;
+        border-radius: 5px;
         margin-left: auto;
 
         &:hover {
-            background-color: #FAB836;
+            background-color: $btnColorHover;
         }
 
         &:active {
-            background-color: #F3A712;
+            background-color: $btnColor;
         }
     }
 }
